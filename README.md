@@ -16,7 +16,8 @@ _I'd love for you to make the most of this project - it's all about learning, he
 ## Setting up the project locally
 ### Prereq 
 ### **Install Git locally**
-``` sudo apt-get install git
+``` 
+sudo apt-get install git
 ```
 ### **Install nodejs and npm**
 Goto this site https://nodejs.org/en/download/package-manager and install commands for current version on linux machine
