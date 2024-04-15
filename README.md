@@ -4,9 +4,6 @@ WanderLust is a simple MERN travel blog website ✈ This project is aimed to hel
 
 ![Preview Image](https://github.com/krishnaacharyaa/wanderlust/assets/116620586/17ba9da6-225f-481d-87c0-5d5a010a9538)
 
-## [Figma Design File](https://www.figma.com/file/zqNcWGGKBo5Q2TwwVgR6G5/WanderLust--A-Travel-Blog-App?type=design&node-id=0%3A1&mode=design&t=c4oCG8N1Fjf7pxTt-1)
-## [Discord Channel](https://discord.gg/FEKasAdCrG)
-
 ## 🎯 Goal of this project
 
 At its core, this project embodies two important aims:
@@ -17,13 +14,53 @@ At its core, this project embodies two important aims:
 _I'd love for you to make the most of this project - it's all about learning, helping, and growing in the open-source world._
 
 ## Setting up the project locally
+### Prereq 
+### **Install Git locally**
+``` sudo apt-get install git
+```
+### **Install nodejs and npm**
+Goto this site https://nodejs.org/en/download/package-manager and install commands for current version on linux machine
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+nvm install 21
+node -v
+nmp -v
+```
+
+### **Install mongodb on ubuntu server**
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
+
+or
+
+https://thatsmy.blog/install-mongodbi-on-ubuntu-22-proxmox-tips/
+If you are in a Proxmox VM, the VM CPU type must be “Host”
+
+```
+# Import the public key
+wget -qO - https://www.mongodb.org/static/pgp/server-7.0.asc | sudo apt-key add -
+
+# Add the repository
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
+# Update packets sources
+sudo apt-get update
+
+# Install MongoDB :
+sudo apt-get install -y mongodb-org
+
+# Start and enable MongoDB :
+sudo systemctl start mongod
+
+# Mongo must be running, check the status :
+sudo systemctl status mongod
+```
 
 ### Setting up the Backend
 
 1. **Fork and Clone the Repository**
 
    ```bash
-   git clone https://github.com/{your-username}/wanderlust.git
+   git clone https://github.com/rootmeet/wanderlust.git
    ```
 
 2. **Navigate to the Backend Directory**
@@ -37,6 +74,8 @@ _I'd love for you to make the most of this project - it's all about learning, he
    ```bash
    npm i
    ```
+
+   If npm not found then install npm from here : https://nodejs.org/en/download/package-manager then restart server
 
 4. **Set up your MongoDB Database**
 
@@ -95,12 +134,11 @@ _I'd love for you to make the most of this project - it's all about learning, he
    npm run dev
    ```
 
-## 🌟 Ready to Contribute?
+   Launch frontend in background using nohup
+   nohup npm run dev -- --host &
 
-Kindly go through [CONTRIBUTING.md](https://github.com/krishnaacharyaa/wanderlust/blob/main/.github/CONTRIBUTING.md) to understand everything from setup to contributing guidelines.
-
-## 💖 Show Your Support
+## 🌟💖 Show Your Support
 
 If you find this project interesting and inspiring, please consider showing your support by starring it on GitHub! Your star goes a long way in helping me reach more developers and encourages me to keep enhancing the project.
 
-🚀 Feel free to get in touch with me for any further queries or support, happy to help :)
+🚀 Feel free to get in touch with me for any further queries or support, happy to help :) :)
