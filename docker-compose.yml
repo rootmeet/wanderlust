@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - '5173:5173'
+    networks:
+      - node-network
+
+  backend:
+    build: ./backend
+    ports:
+      - '5000:5000'
+    depends_on:
+      - mongodb
+    networks:
+      - node-network
+
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - '27017:27017'
+    networks:
+      - node-network
+    volumes:
+      - wanderlust:/data/db
+
+volumes:
+  wanderlust:
+
+networks:
+  node-network:
+    driver: bridge
