@@ -24,9 +24,11 @@ services:
     networks:
       - node-network
     volumes:
+      - ./backend/data:/data
       - wanderlust:/data/db
 
 volumes:
+  data:
   wanderlust:
 
 networks:
