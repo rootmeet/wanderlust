@@ -4,6 +4,11 @@ pipeline {
         SONAR_HOME= tool "Sonar"
     }
     stages{
+        stage("Clean Workspace"){
+            steps{
+                cleanWs()
+            }
+        }
         stage("Clone Code from git"){
             steps{
                 git url: "https://github.com/rootmeet/wanderlust.git", branch: "main"
@@ -31,12 +36,28 @@ pipeline {
         }
         stage("Trivy File System scan"){
             steps{
-                sh "trivy fs --format table -o trivy-fs-report.html ."
+                sh "trivy fs . > trivyfs.txt"
             }
         }
         stage("Deploy with Docker Compose"){
             steps{
                 sh "docker-compose down && docker-compose up -d"
+            }
+        }
+        stage("TRIVY Image Scan"){
+            steps{
+                sh "trivy image sanjeevrisbud/wanderlust-frontend:latest > trivy-frontendimage.txt"
+                sh "trivy image sanjeevrisbud/wanderlust-backend:latest > trivy-backendimage.txt" 
+            }
+        }
+        stage("Docker Build & Push"){
+            steps{
+                script{
+                    withDockerRegistry(credentialsId: 'dockerhub', toolName: 'docker'){  
+                        sh "docker push sanjeevrisbud/wanderlust-frontend:latest"
+                        sh "docker push sanjeevrisbud/wanderlust-backend:latest"
+                    }
+                }
             }
         }
     }
