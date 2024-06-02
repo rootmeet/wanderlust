@@ -19,7 +19,6 @@ spec:
       containers:
       - name: backend
         image: 'sanjeevrisbud/wanderlust-backend:latest'
-        imagePullPolicy: Always
         ports:
         - containerPort: 5000
 ---
@@ -29,11 +28,11 @@ metadata:
   name: backend-service
   namespace: workshop
 spec:
-  ports:
-  - port: 5000
-    protocol: TCP
-    targetPort: 5000
-    nodePort: 31100
   type: NodePort
   selector:
     role: backend
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
+      nodePort: 31100
