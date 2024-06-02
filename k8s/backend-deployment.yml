@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: workshop
+  labels:
+    role: backend
+    env: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: backend
+  template:
+    metadata:
+      labels:
+        role: backend
+    spec:
+      containers:
+      - name: backend
+        image: 'sanjeevrisbud/wanderlust-backend:latest'
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
